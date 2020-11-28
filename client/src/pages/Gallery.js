@@ -1,6 +1,6 @@
 import React , {useState,useEffect} from 'react'
 import axios from 'axios'
-import DeleteBtn from '../components/DeleteBtn'
+import patient from '../utils/patient.gif'
 function Gallery(){
     const [imgs, setImgs]=useState([])
     useEffect(() => {
@@ -32,7 +32,7 @@ function Gallery(){
     //     })
     // }
 return(
-    <div className="container ">
+    <div className="container gallery">
         {/* <button onClick={showImgs}> Show Imgs </button> */}
         <div className="row">
         {imgs.length >0? 
@@ -40,7 +40,7 @@ return(
             return(
             <div className="col-md-12 col-lg-6">
                 <div className="card" key={data._id}>
-                    <div className="row">
+                    <div className="row" id="tRow">
                         <div className="col-sm-10">
                             <h2 className="card-title">{data.title}</h2>
                         </div>
@@ -48,16 +48,13 @@ return(
                             <button name={data._id} onClick={handleDelete} className="delete-btn">X</button>
                         </div>
                     </div>
-                    <div className="row">
-                        {/* <div className="card-content"> */}
-                            <div className='container'>
-                            <img src={data.url}class="img-fluid" alt="Image Missing" id="upImg"/>
+                    <div className="row" >
+                            <div className='cImg'>
+                            <img src={data.url}class="img-fluid" alt={patient} id="upImg"/>
                             </div>
-                            {/* <img src={data.url} alt="Image Missing" id="upImg"/> */}
-                        {/* </div> */}
                     </div>
-                    <div className="row">
-                    <p>{data.caption}</p>
+                    <div className="row cRow" id ="caption">
+                        <p>{data.caption}</p>
                     </div>       
                 </div>
             </div>)

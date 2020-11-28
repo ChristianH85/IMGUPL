@@ -2,6 +2,13 @@
     width:100%;
 
 } */
+.App{
+    background:url('./utils/code.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+    overflow:auto;
+}
 #addPic{
     margin-top:1em;
     width:100%;
@@ -25,14 +32,32 @@
     background:#2a2c2d;
     color:#b4c1ca;
 }
+.cImg{
+    width:100%;
+}
+#upImg{
+    width:100%;
+}
 .screen{
     background: #b4c1ca
 }
-/* #title{
-    border-radius:top 8px; 
-    border-top: 
-} */
+#title{
+    margin-bottom: 1em;
+}
+#tRow{
+    border-bottom: 2px solid #2a2c2d;
+    margin-bottom:1em;
+}
+.cRow{
+    border: 1px solid #2a2c2d;
+    margin-bottom:1em;
+    background-color:#e2edf5 ;
+    color:#2a2c2d;
+}
 .delete-btn {
+    font-weight:800;
+    height:2em;
+    width:2em;
     background: #e74944;
     color: #b4c1ca;
   }
@@ -44,6 +69,14 @@
     text-align: center;
     background:#2a2c2d;
     font-weight: 700;
+    position: fixed;
+    top:0;
+    width: 100vw;
+    z-index: 1000;
+
+}
+.gallery{
+    margin-top:3em;
 }
 #upForm{
     background:#b4c1ca;

@@ -1,13 +1,13 @@
 import React from "react";
 import Nav from "./components/Nav";
-import Upform from "./components/UpForm";
+import Upform from "./pages/UpForm";
 import Gallery from "./pages/Gallery"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   
   return (
     <Router>
-      <div>
+      <div className='App'>
         <Nav />
         <Switch>
           <Route exact path="/">
