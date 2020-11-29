@@ -13,14 +13,14 @@ function Gallery(){
 
       const handleDelete = (event)=>{
           event.preventDefault();
-        console.log(event.target.name)
         let id= event.target.name
         let items=imgs
-        let newPlist= items.splice(items.findIndex(function(i){
+        let i = items.findIndex(function(i){
             return i._id === id;
-        }), 1)
-        console.log(newPlist)
-        
+        })
+        items.splice(i,1)
+        console.log(items)
+        setImgs(items)
         axios.delete('/api/pics/'+id).then(data=>{
             console.log(data);
         })
@@ -38,8 +38,8 @@ return(
         {imgs.length >0? 
         imgs.map((data)=>{
             return(
-            <div className="col-md-12 col-lg-6">
-                <div className="card" key={data._id}>
+            <div className="col-md-12 col-lg-6"key={data._id}>
+                <div className="card">
                     <div className="row" id="tRow">
                         <div className="col-sm-10">
                             <h2 className="card-title">{data.title}</h2>
@@ -50,7 +50,7 @@ return(
                     </div>
                     <div className="row" >
                             <div className='cImg'>
-                            <img src={data.url}class="img-fluid" alt={patient} id="upImg"/>
+                            <img src={data.url}className="img-fluid" alt={patient} id="upImg"/>
                             </div>
                     </div>
                     <div className="row cRow" id ="caption">

@@ -64,9 +64,11 @@
 #caption{
     border-radius:bottom 8px;
 }
+.space{
+    margin-top: 15vh;
+}
 #logo{
     color: #b4c1ca;
-    text-align: center;
     background:#2a2c2d;
     font-weight: 700;
     position: fixed;

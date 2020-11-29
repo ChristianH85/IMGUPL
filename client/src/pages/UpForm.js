@@ -52,9 +52,11 @@ function Upform(){
   return(
       <div>
         {showUp?
-        <div className="row">
+        <div className="row space">
           <div className="col-sm-10 offset-sm-1 col-md-6 offset-md-3">  
             < div  className="card">
+              <h1>Upload Image</h1>
+              <p>please use optimized photos to keep size down</p>
               <input id="imgI" type='file' accept="image/*" name="file" encType="multipart/form-data" onChange={handleIChange} />
               <button id="upload"type='button'  onClick={handlefile}>Upload</button>
             </div>
