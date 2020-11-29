@@ -28,6 +28,13 @@
     box-shadow: inset 7px 7px 13px #242526, 
                 inset -7px -7px 13px #303334;
 }
+
+.nav-link{
+    color:#2a2c2d;
+}
+.navbar-brand{
+    color:#2a2c2d;
+}
 #imgI{
     background:#2a2c2d;
     color:#b4c1ca;
@@ -68,8 +75,8 @@
     margin-top: 15vh;
 }
 #logo{
-    color: #b4c1ca;
-    background:#2a2c2d;
+    /* color: #b4c1ca; */
+    background:#f4f5f7;
     font-weight: 700;
     position: fixed;
     top:0;
