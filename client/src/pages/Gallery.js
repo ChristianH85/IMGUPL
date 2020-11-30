@@ -1,39 +1,39 @@
 import React , {useState,useEffect} from 'react'
 import axios from 'axios'
 import patient from '../utils/patient.gif'
+import {Redirect} from 'react-router-dom'
 function Gallery(){
     const [imgs, setImgs]=useState([])
+    const[refresh,setRefresh]=useState(false)
+
     useEffect(() => {
         axios.get('/api/pics/mypics')
             .then(res=>{
                 setImgs(res.data)
             })
             .catch(err => console.log(err));
-      }, [])
+      }, [refresh])
 
       const handleDelete = (event)=>{
-          event.preventDefault();
+        event.preventDefault();
         let id= event.target.name
         let items=imgs
         let i = items.findIndex(function(i){
             return i._id === id;
         })
-        items.splice(i,1)
+        
+       
         console.log(items)
         setImgs(items)
         axios.delete('/api/pics/'+id).then(data=>{
             console.log(data);
+            setRefresh(true)
         })
-
+    
       }
-    // const showImgs=()=>{
-    //     axios.get('/api/pics/mypics').then(res=>{
-    //         setImgs(res.data)
-    //     })
-    // }
+
 return(
     <div className="container gallery">
-        {/* <button onClick={showImgs}> Show Imgs </button> */}
         <div className="row">
         {imgs.length >0? 
         imgs.map((data)=>{

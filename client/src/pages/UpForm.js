@@ -1,17 +1,22 @@
 import React,{useState} from "react";
 import axios from 'axios'
 import patient from '../utils/patient.gif'
+import {Redirect} from 'react-router-dom'
 
 function Upform(){
     const[imgData, setImgD]=useState('')
-    const[upImg, setUp]=useState("http://res.cloudinary.com/dm2obdaq7/image/upload/v1606513823/trvr1yzvg3pz0mq44v6k.gif")
+    const[upImg, setUp]=useState("")
     const[title, setTitle]=useState('')
     const[caption,setCaption]=useState('')
     const[showUp, setShow]=useState(true)
+    const[redirect,setRedirect]=useState(false)
+
+    ////// track change of file input and capture data
     const handleIChange=(event)=>{
       console.log(event.target.files[0])
       setImgD(event.target.files[0])
     }
+    ///////// handle form inputs and saves data for sending to db
     const handleDChange=(event)=>{
       let name=event.target.id
       let val=event.target.value
@@ -28,17 +33,18 @@ function Upform(){
     //################## package file info and send it back
       var formData = new FormData();
       formData.append('file',imgData );
-
+      /////// function for viewing form data
       for (var p of formData) {
         console.log(p);
       }
-      axios.post('/api/pics/i2',formData).then((response)=>{
+      axios.post('/api/pics/imgup',formData).then((response)=>{
         console.log (response)
         setUp(response.data)
         setShow(false)
       })
       //##################
   }
+  //////////add url caption and title to db
   const addPic=()=>{
     const pObj={
       title:title,
@@ -47,10 +53,12 @@ function Upform(){
     }
     axios.post('/api/pics/dbpic',pObj).then(res=>{
       console.log(res)
+      setRedirect(true)
     })
   }
   return(
       <div>
+        {redirect?<Redirect push to='/'/>:<div></div>}
         {showUp?
         <div className="row space">
           <div className="col-sm-10 offset-sm-1 col-md-6 offset-md-3">  
@@ -66,7 +74,7 @@ function Upform(){
             </>
         }
             {!showUp?
-              <div className="row">
+              <div className="row space">
               <div className="col-xs-10 offset-xs-1 col-md-6 offset-md-3">
                   <div className="card">
                         <input id='title' name='title' type='text' placeholder="Title" value={title} onChange={handleDChange} />

@@ -15,8 +15,8 @@
     color:#b4c1ca;
     border-radius: 37px;
     background: #2d2ba0;
-    box-shadow: inset 7px 7px 13px #242526, 
-                inset -7px -7px 13px #303334;
+    box-shadow: inset 7px 7px 13px #10263b, 
+                inset -7px -7px 13px #263955;
 }
 .card{
     margin-top:15%;
@@ -75,7 +75,6 @@
     margin-top: 15vh;
 }
 #logo{
-    /* color: #b4c1ca; */
     background:#f4f5f7;
     font-weight: 700;
     position: fixed;
@@ -98,6 +97,6 @@
     border-radius: 8px;
     color:#b4c1ca;
     background: #2d2ba0;
-    box-shadow: inset 7px 7px 13px #242526, 
-                inset -7px -7px 13px #303334;
+    box-shadow: inset 7px 7px 13px #10263b, 
+                inset -7px -7px 13px #263955;
 }
