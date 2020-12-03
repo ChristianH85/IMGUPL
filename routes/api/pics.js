@@ -33,18 +33,41 @@ router.route('/dbpic')
 //////////////// use multer upload method to organize file data to readable format
 router.post("/imgup", upload.single('file'),function(req,res, next){
   console.log(req.file)
+  console.log(JSON.stringify(req.body))
+  
+  
+  // picsController.create(JSON.stringify(req.body))
+  // db.Pic.create(req.body)
+  //     .then(pic => {
+  //       console.log("***********\n"+JSON.stringify(pic))
+  //       res.json(pic)})
+  //     .catch(err => res.status(422).json(err));
+  // console.log(JSON.stringify(req.body.info.name))
   ///////////use cloudinary uploader to send file to bucket  and upload response
-  cloudinary.uploader.upload(req.file.path, { tags: 'express_sample' })
+  cloudinary.uploader.upload(req.file.path)
     .then(function (image) {
       console.log('** file uploaded to Cloudinary service');
       console.dir(image);
       ////save the file path to temp folder and delete file
       console.log(req.file.path+"\n^^^^^^^^^^^^^^")
       fs.unlink(req.file.path, err=>{if(err){console.log(err)}})
-      res.json(image.url)
+      // res.json(image.url)
+      const obj={
+        title:req.body.name,
+        caption:req.body.caption,
+        url:image.url,
+      }
+     
+        let result= picsController.create(obj)
+        console.log(result)
+        res.json(result)
+      
+      // console.log(dbPost())
+      
     })
-    .then(function () {
+    .then(function (res) {
       console.log('** photo saved');
+      console.log(res)
     })
 })
 

@@ -7,6 +7,7 @@ function Upform(){
     const[imgData, setImgD]=useState('')
     const[upImg, setUp]=useState("")
     const[title, setTitle]=useState('')
+    const[name, setName]=useState('')
     const[caption,setCaption]=useState('')
     const[showUp, setShow]=useState(true)
     const[redirect,setRedirect]=useState(false)
@@ -20,6 +21,9 @@ function Upform(){
     const handleDChange=(event)=>{
       let name=event.target.id
       let val=event.target.value
+      if (name==="name"){
+        setName(val)
+      }
       if (name==="title"){
         setTitle(val)
       }
@@ -29,10 +33,18 @@ function Upform(){
     }
     const handlefile=(event)=>{
       event.preventDefault()
-      setShow(false)
+      
+      // let data={
+      //   name:name,
+      //   caption:caption
+      // }
     //################## package file info and send it back
       var formData = new FormData();
       formData.append('file',imgData );
+      formData.append('name',name)
+      formData.append('caption',caption)
+      
+      // formData.append('title',title)
       /////// function for viewing form data
       for (var p of formData) {
         console.log(p);
@@ -40,7 +52,7 @@ function Upform(){
       axios.post('/api/pics/imgup',formData).then((response)=>{
         console.log (response)
         setUp(response.data)
-        setShow(false)
+        setRedirect(true)
       })
       //##################
   }
@@ -65,7 +77,12 @@ function Upform(){
             < div  className="card">
               <h1>Upload Image</h1>
               <p>please use optimized photos to keep size down</p>
-              <input id="imgI" type='file' accept="image/*" name="file" encType="multipart/form-data" onChange={handleIChange} />
+              <input id='name' name='name' type='text' placeholder="Name" value={name} onChange={handleDChange} />
+              <label id="imgI">
+              <input  type='file' accept="image/*" name="file" encType="multipart/form-data" onChange={handleIChange} />
+              </label>
+              {/* <input id="imgI" type='file' accept="image/*" name="file" encType="multipart/form-data" onChange={handleIChange} /> */}
+              <textarea id='caption' name='caption' type='text' placeholder="Caption this" value={caption}onChange={handleDChange} />
               <button id="upload"type='button'  onClick={handlefile}>Upload</button>
             </div>
           </div>

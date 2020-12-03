@@ -17,14 +17,18 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
+  create: function(data) {
+    console.log(data)
+    
     db.Pic
-      .create(req.body)
+      .create(data)
       .then(dbModel => {
         console.log("***********\n"+JSON.stringify(dbModel))
-        res.json(dbModel)})
+        return dbModel
+      })
       .catch(err => res.status(422).json(err));
   },
+
   update: function(req, res) {
     db.Pic
       .findOneAndUpdate({ _id: req.params.id }, req.body)
