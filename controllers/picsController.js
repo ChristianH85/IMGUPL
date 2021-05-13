@@ -5,7 +5,9 @@ module.exports = {
   findAll: function(req, res) {
     db.Pic
       .find({})
-      .then(dbModel => res.json(dbModel))
+      .then(dbModel => {
+        console.log(dbModel)
+        res.json(dbModel)})
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
@@ -26,7 +28,7 @@ module.exports = {
         console.log("***********\n"+JSON.stringify(dbModel))
         return dbModel
       })
-      .catch(err => res.status(422).json(err));
+      // .catch(err => res.status(422).json(err));
   },
 
   update: function(req, res) {
